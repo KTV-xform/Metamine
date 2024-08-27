@@ -1,0 +1,16 @@
+{
+  "projects": {
+    "default": "halcore-landing",
+    "live": "halcore-landing"
+  },
+  "targets": {
+    "halcore-landing": {
+      "hosting": {
+        "landing": [
+          "halcore-landing"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

@@ -1,0 +1,37 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "plugins": [
+    "react",
+    "react-hooks"
+  ],
+  "rules": {
+    "react/no-unknown-property": [
+      "error",
+      {
+        "ignore": ["css"]
+      }
+    ],
+    "no-empty-pattern": 1,
+    "no-useless-catch": 0,
+    "no-useless-escape": 0,
+    "react-hooks/rules-of-hooks": 1,
+    "camelcase": 0,
+    "prefer-destructuring": 2,
+    "comma-dangle": 0,
+    "react/prop-types": 0
+  }
+}
