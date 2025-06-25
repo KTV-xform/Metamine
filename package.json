@@ -1,5 +1,5 @@
 {
-  "name": "HalcoreLanding",
+  "name": "metamine_landing",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -23,6 +23,7 @@
     "@rainbow-me/rainbowkit": "^1.1.2",
     "@siddomains/sidjs": "^0.1.29",
     "@splinetool/react-spline": "^2.2.6",
+    "@splinetool/runtime": "^1.10.12",
     "@tailwindcss/line-clamp": "^0.4.2",
     "@walletconnect/web3-provider": "^1.7.8",
     "@web3-react/core": "^6.1.9",
@@ -56,6 +57,7 @@
     "react-router-dom": "^5.2.0",
     "react-scroll": "^1.8.6",
     "react-slick": "^0.28.1",
+    "react-toastify": "^10.0.4",
     "react-youtube": "^10.1.0",
     "slick-carousel": "^1.8.1",
     "use-clipboard-copy": "^0.2.0",
@@ -63,8 +65,7 @@
     "valtio": "^1.10.5",
     "wagmi": "^1.4.4",
     "web3": "^1.7.5",
-    "web3modal": "^1.9.8",
-    "react-toastify": "^10.0.4"
+    "web3modal": "^1.9.8"
   },
   "devDependencies": {
     "@emotion/babel-plugin": "^11.7.2",

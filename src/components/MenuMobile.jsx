@@ -1,7 +1,7 @@
 import { Space } from "antd";
 import Image from "components/Image";
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState, useCallback } from "react";
+import { useRouter } from "next/router";
 import { showComingSoon } from "shares/config";
 import { openInNewTab } from "shares/helpers";
 import { MENU_ITEMS } from "shares/menu";
@@ -23,7 +23,7 @@ const MenuExpand = styled.ul`
 `;
 
 const MenuItem = styled.li`
-  ${tw`flex flex-row items-center text-hint cursor-pointer text-[24px] h-[48px]`}
+  ${tw`flex flex-row items-center text-hint cursor-pointer text-lg md:text-[24px] h-[40px] md:h-[48px] hover:text-white transition-colors`}
 `;
 
 const IconArrow = styled.img`
@@ -40,10 +40,10 @@ const IconArrow = styled.img`
 const DEFAULT = MENU_ITEMS.map((i) => ({ ...i, isExpand: false }));
 
 export const MenuMobile = ({ onSelected }) => {
-  const history = useHistory();
+  const router = useRouter();
   const [menuItems, setMenuItems] = useState(DEFAULT);
 
-  const onToggleMenu = (index) => {
+  const onToggleMenu = useCallback((index) => {
     const newMenu = [...menuItems];
     if (newMenu[index].children) {
       newMenu[index] = {
@@ -54,55 +54,65 @@ export const MenuMobile = ({ onSelected }) => {
     } else {
       onChange(menuItems[index]);
     }
-  };
+  }, [menuItems]);
 
-  const onChange = (item) => {
-    if (item?.isComingSoon) {
-      return showComingSoon();
-    }
-    if (item?.isRedirect && item?.href) {
-      openInNewTab(item?.href);
+  const onChange = useCallback((item) => {
+    try {
+      if (item?.isComingSoon) {
+        showComingSoon();
+        return;
+      }
+      if (item?.isRedirect && item?.href) {
+        openInNewTab(item?.href);
+        setMenuItems(DEFAULT);
+        onSelected?.();
+        return;
+      }
+      if (item?.key) {
+        router.push(item.key);
+        setMenuItems(DEFAULT);
+        onSelected?.();
+      }
+    } catch (error) {
+      console.error("Navigation error:", error);
+      // Fallback to home page if navigation fails
+      router.push("/");
       setMenuItems(DEFAULT);
       onSelected?.();
-      return;
     }
-    history.push(item.key);
-    setMenuItems(DEFAULT);
-    onSelected?.();
-  };
+  }, [router, onSelected]);
 
   return (
-    <Space direction="vertical" size={6} className="p-[32px]">
+    <Space direction="vertical" size={4} className="p-[24px] md:p-[32px] w-full">
       {menuItems.map((item, index) => (
-        <React.Fragment key={index.key}>
+        <React.Fragment key={item.key || index}>
           <MenuItem onClick={() => onToggleMenu(index)}>
-            <div className="flex flex-row justify-between">
+            <div className="flex flex-row justify-between w-full items-center">
               <Space size={12}>
                 {item?.icon && (
-                  <Image src={item.icon} className="w-[20px] object-contain" />
+                  <Image src={item.icon} className="w-[18px] md:w-[20px] object-contain" />
                 )}
-                {item.label}
+                <span className="text-sm md:text-base">{item.label}</span>
               </Space>
-              &nbsp;
               {item?.children?.length > 0 && (
                 <IconArrow
                   active={item?.isExpand}
                   src="/icons/ic-arrow-right.svg"
-                  className="w-[18px]"
+                  className="w-[16px] md:w-[18px]"
                 />
               )}
             </div>
           </MenuItem>
           {item?.children?.length > 0 && (
             <MenuExpand
-              height={item?.children?.length * 42}
+              height={item?.children?.length * 36}
               active={item?.isExpand}
             >
-              {item?.children?.map((sub) => (
+              {item?.children?.map((sub, subIndex) => (
                 <MenuItem
-                  key={sub.key}
+                  key={sub.key || `sub-${subIndex}`}
                   onClick={() => onChange(sub)}
-                  className="h-[42px] text-hint text-[16px]"
+                  className="h-[36px] text-hint text-sm md:text-[16px] pl-6"
                 >
                   {sub.label}
                 </MenuItem>

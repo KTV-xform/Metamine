@@ -8,7 +8,7 @@ const HowToEarn = () => {
         Share Extra Compute Capacity
       </p>
       <h6 className="text-[28px] md:text-[42px] bg-gradient-to-r from-primary to-[#8AC2FF] text-transparent bg-clip-text font-semibold mt-[8px] md:mt-[14px] text-center">
-        Join Halcore
+        Join Metamine
       </h6>
       <button
         onClick={showComingSoon}
@@ -31,7 +31,7 @@ const HowToEarn = () => {
               className="md:hidden block mx-auto mb-3 w-[42px]"
             />
             <p className="text-white text-[14px] md:text-[16px]">
-              Install Halcore Extension
+              Install Metamine Extension
             </p>
             <span className="text-hint text-[10px] md:text-[12px] md:mt-[12px] mt-[8px]">
               Install your device and connect to the internet

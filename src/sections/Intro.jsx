@@ -8,10 +8,10 @@ const Intro = () => {
         Global Distributed Training Network
       </p>
       <h1 className="text-white text-[30px] md:text-[54px] font-medium mt-[12px] md:mt-[16px] text-center">
-        Halcore Compute Network
+        Metamine Compute Network
       </h1>
       <p className="text-white text-[12px] md:text-[20px] text-center w-[80%] md:w-[700px]">
-        Halcore is built to scale native AI inference on-chain with security and
+        Metamine is built to scale native AI inference on-chain with security and
         decentralization in mind.
       </p>
       <button

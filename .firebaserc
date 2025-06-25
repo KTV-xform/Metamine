@@ -1,13 +1,13 @@
 {
   "projects": {
-    "default": "halcore-landing",
-    "live": "halcore-landing"
+    "default": "metamine-landing",
+    "live": "metamine-landing"
   },
   "targets": {
-    "halcore-landing": {
+    "metamine-landing": {
       "hosting": {
         "landing": [
-          "halcore-landing"
+          "metamine-landing"
         ]
       }
     }

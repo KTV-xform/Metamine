@@ -3,12 +3,12 @@ import { Space } from "antd";
 import { openInNewTab } from "shares/helpers";
 import { MENU_ITEMS } from "shares/menu";
 import tw, { styled } from "twin.macro";
-import { useHistory, useLocation } from "react-router-dom";
+import { useRouter } from "next/router";
 import { showComingSoon } from "shares/config";
 
 const MenuItem = styled(Space)`
   .menu-item-label {
-    ${tw`cursor-pointer md:text-[14px]`}
+    ${tw`cursor-pointer text-sm lg:text-base`}
     ${({ active }) => (active ? tw`text-white` : tw`text-hint`)}
   }
 
@@ -47,8 +47,7 @@ const SubMenuItem = styled.li`
 `;
 
 const MenuDesktop = () => {
-  const history = useHistory();
-  const location = useLocation();
+  const router = useRouter();
 
   const onChange = (item) => {
     if (!item?.key || item?.children?.length > 0) return;
@@ -60,19 +59,19 @@ const MenuDesktop = () => {
       openInNewTab(item?.href);
       return;
     }
-    history.push(item?.key);
+    router.push(item?.key);
   };
 
   return (
-    <nav className="lg:gap-[32px] md:gap-[26px] md:flex hidden">
+    <nav className="lg:gap-[32px] md:gap-[20px] lg:gap-[26px] md:flex hidden">
       {MENU_ITEMS.map((item, i) => {
         if (item?.hideDesktop) return null;
         return (
           <MenuItem
             key={i}
-            active={location?.pathname === item.key}
+            active={router?.pathname === item.key}
             className="relative z-0!"
-            size={6}
+            size={4}
           >
             <div
               onClick={() => onChange(item)}
@@ -88,12 +87,12 @@ const MenuDesktop = () => {
             {item?.children?.length > 0 && (
               <img
                 src="/icons/ic-arrow-down.svg"
-                className="w-[10px] menu-item-arrow"
+                className="w-[8px] md:w-[10px] menu-item-arrow"
               />
             )}
             {item?.children?.length > 0 && (
               <ul
-                className="absolute top-[32px] left-0 w-[240px] menu-item-dropdown bg-[#171D24]
+                className="absolute top-[32px] left-0 w-[200px] md:w-[240px] menu-item-dropdown bg-[#171D24]
                p-[6px] z-10!"
               >
                 {item?.children?.map((sub, index) => (
@@ -101,7 +100,7 @@ const MenuDesktop = () => {
                     key={`SUB_MENU_${index}`}
                     onClick={() => onChange(sub)}
                   >
-                    <Space size={12} className="text-white md:text-[14px]">
+                    <Space size={12} className="text-white text-sm md:text-[14px]">
                       {sub?.icon && (
                         <img
                           src={sub.icon}

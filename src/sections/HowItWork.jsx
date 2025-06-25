@@ -52,7 +52,7 @@ const HowItWork = () => {
           How it works?
         </p>
         <p className="md:text-[20px] text-[14px] leading-[120%] text-white font-normal">
-          Halcore taps into under-utilized global computing power to power AI
+          Metamine taps into under-utilized global computing power to power AI
           based modeling at scale.
         </p>
       </span>

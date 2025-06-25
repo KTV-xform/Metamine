@@ -4,7 +4,6 @@ import siteMetadata from "shares/siteMetadata";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import React, { useEffect, useState } from "react";
-import { BrowserRouter } from "react-router-dom";
 import { ConfigProvider } from "antd";
 
 function MyApp({ Component, pageProps }) {
@@ -26,18 +25,16 @@ const Home = ({ Component, pageProps }) => {
   if (isSSR) return null;
 
   return (
-    <BrowserRouter>
-      <ConfigProvider
-        theme={{
-          token: {
-            fontFamily: "Inter",
-            fontFamilyCode: "Inter",
-          },
-        }}
-      >
-        <MyApp Component={Component} pageProps={pageProps} />
-      </ConfigProvider>
-    </BrowserRouter>
+    <ConfigProvider
+      theme={{
+        token: {
+          fontFamily: "Inter",
+          fontFamilyCode: "Inter",
+        },
+      }}
+    >
+      <MyApp Component={Component} pageProps={pageProps} />
+    </ConfigProvider>
   );
 };
 

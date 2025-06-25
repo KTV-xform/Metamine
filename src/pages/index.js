@@ -8,8 +8,8 @@ import Vision from "sections/Vision";
 import HowToEarn from "sections/HowToEarn";
 import HowItWork from "sections/HowItWork";
 import Header from "sections/Header";
-import { Affix, Space } from "antd";
-import { ToastContainer } from "react-toastify";
+import Layout from "components/Layout";
+import { Affix } from "antd";
 
 const Spline = React.lazy(() => import("@splinetool/react-spline"));
 
@@ -76,12 +76,12 @@ const InfinityLoadingBar = styled.div`
 
 const ProgressLoading = () => {
   return (
-    <Space direction="vertical" className="flex items-center">
-      <img src="/images/logo.png" />
+    <div className="flex items-center">
+      <img src="/images/logo3.png" />
       <InfinityLoadingBar>
         <div className="bar" />
       </InfinityLoadingBar>
-    </Space>
+    </div>
   );
 };
 
@@ -165,58 +165,48 @@ export default function App() {
   }, [activeSection]);
 
   return (
-    <div className="relative bg-black" ref={ref}>
-      <Affix offsetTop={0} className="absolute top-0 right-0 z-10 w-full">
-        <Header />
-      </Affix>
-      <SectionStep current={activeSection} />
-      <div className="fixed z-0">
-        <Suspense
-          fallback={
-            <div className="w-screen h-screen bg-black flex justify-center items-center">
-              <p className="text-white">Loading...</p>
-            </div>
-          }
-        >
-          <Spline
-            style={{
-              height: "100vh",
-              width: "100vw",
-            }}
-            onLoad={handleLoad}
-            scene="https://prod.spline.design/H6wQ-q-C-XZxlbr3/scene.splinecode"
-            // scene="/scene.splinecode.json"
-          />
-        </Suspense>
+    <Layout showHeader={false}>
+      <div className="relative bg-black" ref={ref}>
+        <Affix offsetTop={0} className="absolute top-0 right-0 z-10 w-full">
+          <Header />
+        </Affix>
+        <SectionStep current={activeSection} />
+        <div className="fixed z-0">
+          <Suspense
+            fallback={
+              <div className="w-screen h-screen bg-black flex justify-center items-center">
+                <p className="text-white">Loading...</p>
+              </div>
+            }
+          >
+            <Spline
+              style={{
+                height: "100vh",
+                width: "100vw",
+              }}
+              onLoad={handleLoad}
+              scene="https://prod.spline.design/H6wQ-q-C-XZxlbr3/scene.splinecode"
+              // scene="/scene.splinecode.json"
+            />
+          </Suspense>
+        </div>
+        <div className="overflow-hidden fixed snap-y snap-mandatory overflow-y-scroll w-screen h-screen scrollbar-hide">
+          {[...Array(4)].map((_, index) => (
+            <Section
+              key={index}
+              id={index + 1}
+              setActiveSection={setActiveSection}
+              activeSection={activeSection}
+            />
+          ))}
+        </div>
+        <StyledLoader
+          active={isLoading}
+          spinner={<ProgressLoading />}
+          classNamePrefix="MyLoader_"
+        />
       </div>
-      <div className="overflow-hidden fixed snap-y snap-mandatory overflow-y-scroll w-screen h-screen scrollbar-hide">
-        {[...Array(4)].map((_, index) => (
-          <Section
-            key={index}
-            id={index + 1}
-            setActiveSection={setActiveSection}
-            activeSection={activeSection}
-          />
-        ))}
-      </div>
-      <StyledLoader
-        active={isLoading}
-        spinner={<ProgressLoading />}
-        classNamePrefix="MyLoader_"
-      />
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        pauseOnFocusLoss={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
-    </div>
+    </Layout>
   );
 }
 

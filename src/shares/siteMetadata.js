@@ -1,9 +1,9 @@
 const siteMetadata = {
-  siteName: "Halcore",
+  siteName: "Metamine",
   siteDescription: "",
-  siteUrl: "https://halcore.ai/",
+  siteUrl: "",
   siteThumbnail: "/thumbnail.png",
-  siteFavicon: "/favicon.png",
+  siteFavicon: "/images/logo3.png",
   analytic: {
     GA: "",
   },

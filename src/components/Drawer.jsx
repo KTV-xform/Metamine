@@ -2,7 +2,8 @@ import { Drawer } from "antd";
 import tw, { styled } from "twin.macro";
 
 const StyleDrawer = styled(Drawer)`
-  height: 100%;
+  height: 100vh;
+  width: 100vw !important;
 
   .ant-drawer-wrapper-body {
     ${tw`bg-[#171D24]`}
@@ -18,7 +19,11 @@ const StyleDrawer = styled(Drawer)`
   }
 
   .ant-drawer-body {
-    ${tw`p-0`}
+    ${tw`p-0 h-full`}
+  }
+
+  .ant-drawer-content-wrapper {
+    width: 100% !important;
   }
 `;
 

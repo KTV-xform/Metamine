@@ -25,6 +25,26 @@ export const getItem = (item) => {
 
 export const MENU_ITEMS = [
   getItem({
+    label: "Home",
+    key: "/",
+  }),
+  getItem({
+    label: "About",
+    key: "/about",
+  }),
+  getItem({
+    label: "Dashboard",
+    key: "/dashboard",
+  }),
+  getItem({
+    label: "Upgrade Level",
+    key: "/upgrade-level",
+  }),
+  getItem({
+    label: "Contact",
+    key: "/contact",
+  }),
+  getItem({
     label: "Learn",
     key: "/learn",
     children: [
@@ -60,8 +80,8 @@ export const MENU_ITEMS = [
         isComingSoon: true,
       }),
       getItem({
-        label: "Roadmap",
-        key: "/roadmap",
+        label: "Telegram",
+        key: "/telegram",
         isComingSoon: true,
       }),
     ],
@@ -69,12 +89,6 @@ export const MENU_ITEMS = [
   getItem({
     label: "Sign up",
     key: "/sign-up",
-    hideDesktop: true,
-    isComingSoon: true,
-  }),
-  getItem({
-    label: "Dashboard",
-    key: "/dashboard",
     hideDesktop: true,
     isComingSoon: true,
   }),
